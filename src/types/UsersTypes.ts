@@ -1,18 +1,26 @@
-// aqui estara mi esquema de usuarios
-// 
-import { Repository } from "./RepositoryTypes";
+import { Query, Repository } from "./RepositoryTypes";
+import { Roles } from "./RolesTypes";
 
-export interface User {
-  id: string;
+export interface User extends Document {
+  _id: any;
   name: string;
   username: string;
   email: string;
+  password?: string;
+  roles?: Roles[];
+  permissions?: string[];
+  comparePassword(password: string): Promise<boolean>;
 }
-//respositorio de usuarios donde se buscara la data de los usuarios
-export interface IUserRepository extends Repository<User> {}
-//metodos de los usuarios
-// aqui estara la logica de los usuarios
+
+export interface IUserRepository extends Repository<User> {
+  findOne(query: Query): Promise<User | null>;
+}
+
 export interface IUserService {
   createUser(user: User): Promise<User>;
-  findUsers(): Promise<User[]>;
+  findUsers(query?: Query): Promise<User[]>;
+  findUsersById(id: string): Promise<User | null>;
+  findUsersByEmail(email: string): Promise<User | null>;
+  updateUser(id: string, user: Partial<User>): Promise<User | null>;
+  deleteUser(id: string): Promise<boolean>;
 }

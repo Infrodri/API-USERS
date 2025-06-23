@@ -5,7 +5,7 @@
     "rootDir": "./src", // Carpeta raíz de código fuente
     "strict": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node", // Añadido un comentario para forzar la recarga
     "module": "CommonJS",
     "baseUrl": "./src", // Base para los alias
     "paths": {

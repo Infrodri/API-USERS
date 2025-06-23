@@ -1,0 +1,304 @@
+### ========================================
+### API USERS - SISTEMA DE CREDENCIALES
+### ========================================
+
+@baseUrl = http://localhost:4000/api/v1
+@authToken = {{login.response.body.token}}
+
+### ========================================
+### 1. AUTENTICACIÓN
+### ========================================
+
+### Registrar un nuevo usuario
+# @name register
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Admin User",
+  "username": "admin12",
+  "email": "admin12@example.com",
+  "password": "123456",
+  "roles": ["admin"]
+}
+
+### Iniciar sesión
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin12@example.com",
+  "password": "123456"
+}
+
+### ========================================
+### 2. ROLES
+### ========================================
+
+### Obtener todos los roles
+GET {{baseUrl}}/roles
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### Obtener un rol por ID
+GET {{baseUrl}}/roles/68549b16a83fe67b37237368
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### Crear un nuevo rol
+POST {{baseUrl}}/roles
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+Content-Type: application/json
+
+{
+  "name": "funcionario",
+  "description": "Rol para funcionarios del sistema",
+  "permissions": ["credentials_read", "credentials_create"]
+}
+
+### Actualizar un rol
+PUT {{baseUrl}}/roles/6859b52a577f759a17ea246e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+Content-Type: application/json
+
+{
+  "name": "funcionario_actualizado",
+  "description": "Rol actualizado para funcionarios",
+  "permissions": ["credentials_read", "credentials_create", "credentials_update"]
+}
+
+### Eliminar un rol
+DELETE {{baseUrl}}/roles/6859b52a577f759a17ea246e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### ========================================
+### 3. USUARIOS
+### ========================================
+
+### Obtener todos los usuarios
+GET {{baseUrl}}/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### Obtener un usuario por ID
+GET {{baseUrl}}/users/64f8a1b2c3d4e5f6a7b8c9d0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### Crear un nuevo usuario
+POST {{baseUrl}}/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+Content-Type: application/json
+
+{
+  "name": "Juan Pérez",
+  "username": "juan.perez",
+  "email": "juan.perez@example.com",
+  "password": "123456",
+  "roles": ["funcionario"]
+}
+
+### Actualizar un usuario
+PUT {{baseUrl}}/users/64f8a1b2c3d4e5f6a7b8c9d0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+Content-Type: application/json
+
+{
+  "name": "Juan Pérez Actualizado",
+  "email": "juan.perez.nuevo@example.com"
+}
+
+### Eliminar un usuario
+DELETE {{baseUrl}}/users/64f8a1b2c3d4e5f6a7b8c9d0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### ========================================
+### 4. PLANTILLAS (TEMPLATES)
+### ========================================
+
+### Obtener todas las plantillas
+GET {{baseUrl}}/templates
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### Obtener una plantilla por ID
+GET {{baseUrl}}/templates/6822cf81358e7301c51c7e61
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### Crear una nueva plantilla
+POST {{baseUrl}}/templates
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+Content-Type: application/json
+
+{
+  "nombre_institucion": "Universidad Nacional",
+  "nombre_organizacion": "Facultad de Ingeniería",
+  "logo_url": "https://example.com/logos/universidad-nacional.png",
+  "fondo_frontal_url": "https://example.com/templates/frontal-universidad.jpg",
+  "fondo_trasero_url": "https://example.com/templates/trasero-universidad.jpg",
+  "titulo_reverso": "CREDENCIAL UNIVERSITARIA",
+  "texto_recomendacion": "Se recomienda a las autoridades competentes brindar las facilidades necesarias al portador de esta credencial.",
+  "texto_lateral": "Válida hasta: 31/12/2025",
+  "lugar_emision": "Bogotá, Colombia"
+}
+
+### Actualizar una plantilla
+PUT {{baseUrl}}/templates/6859cff442ff47010aeab714
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+Content-Type: application/json
+
+{
+  "nombre_institucion": "Universidad Nacional Actualizada",
+  "texto_recomendacion": "Texto de recomendación actualizado para el año 2025."
+}
+
+### Eliminar una plantilla
+DELETE {{baseUrl}}/templates/64f8a1b2c3d4e5f6a7b8c9d0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### ========================================
+### 5. CREDENCIALES
+### ========================================
+
+### Obtener todas las credenciales
+GET {{baseUrl}}/credentials
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### Obtener credenciales con filtros
+GET {{baseUrl}}/credentials?status=activo&template=64f8a1b2c3d4e5f6a7b8c9d0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### Obtener una credencial por ID
+GET {{baseUrl}}/credentials/6822d65b9eec4381cf6721bf
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### Crear una nueva credencial
+POST {{baseUrl}}/credentials
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+Content-Type: application/json
+
+{
+  "ci": "11145678",
+  "nombre": "María",
+  "apellidos": "González López",
+  "cargo": "Analista de Sistemas",
+  "foto_url": "https://example.com/fotos/maria.jpg",
+  "status": "activo",
+  "template": "64f8a1b2c3d4e5f6a7b8c9d0"
+}
+
+### Actualizar una credencial
+PUT {{baseUrl}}/credentials/683a3f3f5a17990cc1142caa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+Content-Type: application/json
+
+{
+  "cargo": "Analista Senior de Sistemas",
+  "status": "activo"
+}
+
+### Eliminar una credencial
+DELETE {{baseUrl}}/credentials/64f8a1b2c3d4e5f6a7b8c9d0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### ========================================
+### 6. VERIFICACIÓN DE CREDENCIALES (PÚBLICO)
+### ========================================
+
+### Verificar credencial por QR (respuesta pública)
+GET {{baseUrl}}/credentials/verify/683a3f3f5a17990cc1142caa
+
+###
+# curl -X GET "http://localhost:4000/api/v1/templates" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg" -H "Content-Type: application/json"
+
+### Verificar credencial por QR con detalles completos
+GET {{baseUrl}}/credentials/verify-details/683a3f3f5a17990cc1142caa
+
+### ========================================
+### 7. REGISTRO DE IMPRESIONES
+### ========================================
+
+### Registrar una impresión de credencial
+POST {{baseUrl}}/credentials/683a3f3f5a17990cc1142caa/print
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+Content-Type: application/json
+
+{
+  "location": "Oficina Central - Piso 3"
+}
+
+### ========================================
+### 8. REPORTES
+### ========================================
+
+### Obtener historial de credencial por CI
+GET {{baseUrl}}/reports/history/5669226
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### Obtener conteo de impresiones por fecha
+GET {{baseUrl}}/reports/prints-by-date?startDate=2024-01-01&endDate=2024-12-31
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### ========================================
+### 9. PRUEBAS DE ERRORES
+### ========================================
+
+### Intentar crear usuario con email duplicado
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Usuario Duplicado",
+  "username": "duplicado",
+  "email": "admin@example.com",
+  "password": "123456"
+}
+
+### Intentar login con credenciales incorrectas
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "password_incorrecto"
+}
+
+### Intentar acceder sin token
+GET {{baseUrl}}/users
+
+### Intentar acceder con token inválido
+GET {{baseUrl}}/users
+Authorization: Bearer token_invalido
+
+### Intentar crear credencial sin campos requeridos
+POST {{baseUrl}}/credentials
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+Content-Type: application/json
+
+{
+  "nombre": "Solo Nombre"
+}
+
+### ========================================
+### 10. PRUEBAS DE FILTROS Y PAGINACIÓN
+### ========================================
+
+### Obtener usuarios con filtros
+GET {{baseUrl}}/users?email=admin@example.com&limit=10&page=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### Obtener credenciales por estado
+GET {{baseUrl}}/credentials?status=activo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### Obtener credenciales por plantilla
+GET {{baseUrl}}/credentials?template=64f8a1b2c3d4e5f6a7b8c9d0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+
+### ========================================
+### NOTAS IMPORTANTES
+### ========================================
+
+# 1. Reemplaza los IDs (64f8a1b2c3d4e5f6a7b8c9d0) con IDs reales de tu base de datos
+# 2. El token se obtiene automáticamente del login y se usa en las siguientes peticiones
+# 3. Asegúrate de que MongoDB esté corriendo en tu cluster de Atlas
+# 4. Verifica que las variables de entorno estén configuradas (JWT_SECRET, MONGODB_URL_STRING, etc.)
+# 5. Los endpoints de verificación de credenciales son públicos (no requieren token)
+# 6. Para probar, ejecuta primero el login y luego las demás peticiones
+# 7. El servidor está corriendo en el puerto 4000 
