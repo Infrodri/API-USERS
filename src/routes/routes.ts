@@ -8,6 +8,13 @@ import templateController from "@controllers/templateController";
 import credentialController from "@controllers/credentialController";
 import printLogController from "@controllers/PrintLogController";
 import reportController from "@controllers/ReportController";
+import profileController from "@controllers/profileController";
+import systemSettingsController from "@controllers/systemSettingsController";
+import printerSettingsController from "@controllers/printerSettingsController";
+import notificationSettingsController from "@controllers/notificationSettingsController";
+import securitySettingsController from "@controllers/securitySettingsController";
+import notificationController from "@controllers/notificationController";
+import auditController from "@controllers/auditController";
 import { getPermissons, verifyToken } from "@middlewares/auth";
 import { checkRoles } from "@middlewares/roles";
 
@@ -214,6 +221,202 @@ export default () => {
     verifyToken,
     getPermissons,
     asyncHandler(reportController.getPrintsByDate)
+  );
+
+  // Rutas de Perfil
+  router.get(
+    "/profile",
+    verifyToken,
+    asyncHandler(profileController.getProfile)
+  );
+  router.put(
+    "/profile",
+    verifyToken,
+    asyncHandler(profileController.updateProfile)
+  );
+  router.put(
+    "/profile/change-password",
+    verifyToken,
+    asyncHandler(profileController.changePassword)
+  );
+  router.get(
+    "/profile/stats",
+    verifyToken,
+    asyncHandler(profileController.getProfileStats)
+  );
+
+  // Rutas de Configuración del Sistema
+  router.get(
+    "/settings/system",
+    verifyToken,
+    getPermissons,
+    asyncHandler(systemSettingsController.get)
+  );
+  router.put(
+    "/settings/system",
+    verifyToken,
+    getPermissons,
+    asyncHandler(systemSettingsController.update)
+  );
+  router.post(
+    "/settings/system/reset",
+    verifyToken,
+    getPermissons,
+    asyncHandler(systemSettingsController.reset)
+  );
+
+  // Rutas de Configuración de Impresoras
+  router.get(
+    "/settings/printer",
+    verifyToken,
+    getPermissons,
+    asyncHandler(printerSettingsController.get)
+  );
+  router.put(
+    "/settings/printer",
+    verifyToken,
+    getPermissons,
+    asyncHandler(printerSettingsController.update)
+  );
+  router.post(
+    "/settings/printer/reset",
+    verifyToken,
+    getPermissons,
+    asyncHandler(printerSettingsController.reset)
+  );
+
+  // Rutas de Configuración de Notificaciones
+  router.get(
+    "/settings/notifications",
+    verifyToken,
+    getPermissons,
+    asyncHandler(notificationSettingsController.get)
+  );
+  router.put(
+    "/settings/notifications",
+    verifyToken,
+    getPermissons,
+    asyncHandler(notificationSettingsController.update)
+  );
+  router.post(
+    "/settings/notifications/reset",
+    verifyToken,
+    getPermissons,
+    asyncHandler(notificationSettingsController.reset)
+  );
+
+  // Rutas de Configuración de Seguridad
+  router.get(
+    "/settings/security",
+    verifyToken,
+    getPermissons,
+    asyncHandler(securitySettingsController.get)
+  );
+  router.put(
+    "/settings/security",
+    verifyToken,
+    getPermissons,
+    asyncHandler(securitySettingsController.update)
+  );
+  router.post(
+    "/settings/security/reset",
+    verifyToken,
+    getPermissons,
+    asyncHandler(securitySettingsController.reset)
+  );
+
+  // Rutas de Notificaciones
+  router.get(
+    "/notifications/user/:userId",
+    verifyToken,
+    getPermissons,
+    asyncHandler(notificationController.getByUserId)
+  );
+  router.get(
+    "/notifications/:id",
+    verifyToken,
+    getPermissons,
+    asyncHandler(notificationController.getById)
+  );
+  router.post(
+    "/notifications",
+    verifyToken,
+    getPermissons,
+    asyncHandler(notificationController.create)
+  );
+  router.put(
+    "/notifications/:id/read",
+    verifyToken,
+    getPermissons,
+    asyncHandler(notificationController.markAsRead)
+  );
+  router.put(
+    "/notifications/user/:userId/read-all",
+    verifyToken,
+    getPermissons,
+    asyncHandler(notificationController.markAllAsRead)
+  );
+  router.get(
+    "/notifications/user/:userId/unread-count",
+    verifyToken,
+    getPermissons,
+    asyncHandler(notificationController.getUnreadCount)
+  );
+  router.delete(
+    "/notifications/:id",
+    verifyToken,
+    getPermissons,
+    asyncHandler(notificationController.delete)
+  );
+  router.delete(
+    "/notifications/user/:userId",
+    verifyToken,
+    getPermissons,
+    asyncHandler(notificationController.deleteByUserId)
+  );
+
+  // Rutas de Auditoría
+  router.get(
+    "/audit/logs",
+    verifyToken,
+    getPermissons,
+    asyncHandler(auditController.getLogs)
+  );
+  router.get(
+    "/audit/logs/:id",
+    verifyToken,
+    getPermissons,
+    asyncHandler(auditController.getById)
+  );
+  router.get(
+    "/audit/logs/user/:userId",
+    verifyToken,
+    getPermissons,
+    asyncHandler(auditController.getByUserId)
+  );
+  router.get(
+    "/audit/logs/category/:category",
+    verifyToken,
+    getPermissons,
+    asyncHandler(auditController.getByCategory)
+  );
+  router.get(
+    "/audit/logs/date-range",
+    verifyToken,
+    getPermissons,
+    asyncHandler(auditController.getByDateRange)
+  );
+  router.get(
+    "/audit/stats",
+    verifyToken,
+    getPermissons,
+    asyncHandler(auditController.getStats)
+  );
+  router.delete(
+    "/audit/logs/old/:daysOld",
+    verifyToken,
+    getPermissons,
+    asyncHandler(auditController.deleteOldLogs)
   );
 
   return router;
