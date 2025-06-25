@@ -1,13 +1,20 @@
 import routes from "@routes/routes";
 import express, { Application, Request, Response, NextFunction } from "express";
 import morgan from "morgan";
+import cors from "cors";
+
 
 const app: Application = express();
 
 app.use(express.json());
 app.use(morgan("dev"));
 
+app.use(cors({
+  origin: ["http://localhost:3000", "http://localhost:3001", "http://localhost:3002"],
+  credentials: true
+}));
 app.use("/api/v1", routes());
+
 
 /**
  * Middleware para el manejo centralizado de errores.
@@ -20,5 +27,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     error: err.message,
   });
 });
+
 
 export default app;

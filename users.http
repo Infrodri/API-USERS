@@ -38,7 +38,7 @@ Content-Type: application/json
 
 ### Obtener todos los roles
 GET {{baseUrl}}/roles
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDcxNjI2MCwiZXhwIjoxNzUzMzA4MjYwfQ.E7jIY89OhxiI5FIQ6oZapq2IlDwbYn-kkUfJjFN27Fg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTliNGNjNTc3Zjc1OWExN2VhMjQ1ZiIsImlhdCI6MTc1MDczMTY5NSwiZXhwIjoxNzUzMzIzNjk1fQ.oZq0LJ3Y9S0v0-pT5nxSxvH9UsF5qBtXSCuPBskvgHw
 
 ### Obtener un rol por ID
 GET {{baseUrl}}/roles/68549b16a83fe67b37237368
